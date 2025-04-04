@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-box {
+            border: 1px solid #ccc;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        input {
+            display: block;
+            margin: 10px 0;
+            padding: 8px;
+            width: 100%;
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-box">
+        <h2>请登录</h2>
+        <input type="text" id="username" placeholder="用户名" />
+        <input type="password" id="password" placeholder="密码" />
+        <button onclick="login()">登录</button>
+        <div id="errorMsg" class="error"></div>
+    </div>
+
+    <script>
+        // 初始账号数据（每次加载时检查并初始化）
+        if (!localStorage.getItem("allUsers")) {
+            const defaultUsers = {
+                "admin": { password: "123456", avatar: "https://i.pravatar.cc/40?u=admin", name: "管理员" },
+                "xiaoli": { password: "abc123", avatar: "https://i.pravatar.cc/40?u=xiaoli", name: "小李" }
+            };
+            localStorage.setItem("allUsers", JSON.stringify(defaultUsers));
+        }
+
+        function login() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const errorDiv = document.getElementById('errorMsg');
+
+            const allUsers = JSON.parse(localStorage.getItem("allUsers") || "{}");
+
+            if (allUsers[username] && allUsers[username].password === password) {
+                const userData = {
+                    username: username,
+                    name: allUsers[username].name,
+                    avatar: allUsers[username].avatar
+                };
+                localStorage.setItem("loggedInUser", JSON.stringify(userData));
+                window.location.href = "客户信息.html";
+            } else {
+                errorDiv.textContent = "用户名或密码错误";
+            }
+        }
+    </script>
+</body>
+
+</html>
