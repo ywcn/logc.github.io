@@ -49,13 +49,12 @@
 </head>
 
 <body>
-    <div class="login-box">
-        <h2>请登录</h2>
-        <input type="text" id="username" placeholder="用户名" />
-        <input type="password" id="password" placeholder="密码" />
-        <button onclick="login()" >登录</button>
-        <div id="errorMsg" class="error"></div>
-    </div>
+    <form onsubmit="login(); return false;" class="login-box">
+    <input type="text" id="username" placeholder="用户名" autocomplete="username" />
+    <input type="password" id="password" placeholder="密码" autocomplete="current-password" />
+    <button type="submit">登录</button>
+</form>
+
 
     <script>
         // 初始账号数据（每次加载时检查并初始化）
