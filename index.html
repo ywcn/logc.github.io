@@ -586,7 +586,7 @@
 
         const loggedInUser = localStorage.getItem('loggedInUser');
         if (!loggedInUser || !userMap[loggedInUser]) {
-            window.location.href = "login.html";
+            // window.location.href = "login.html";
         } else {
             window.location.href = "login.html";
             document.getElementById('userAvatar').src = userMap[loggedInUser].avatar;
