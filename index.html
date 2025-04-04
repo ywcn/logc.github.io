@@ -586,9 +586,9 @@
 
         const loggedInUser = localStorage.getItem('loggedInUser');
         if (!loggedInUser || !userMap[loggedInUser]) {
-            // window.location.href = "login.html";
-        } else {
             window.location.href = "login.html";
+        } else {
+            
             document.getElementById('userAvatar').src = userMap[loggedInUser].avatar;
             document.getElementById('welcomeText').textContent = `欢迎您！${loggedInUser}`;
         }
@@ -641,8 +641,7 @@
             allUsers[user.username].password = newPass;
             localStorage.setItem("allUsers", JSON.stringify(allUsers));
 
-            alert("密码修改成功，请重新登录");
-            logout(); // 清除状态并跳转登录页
+            window.location.href = 'password-changed.html';
         }
 
     </script>
