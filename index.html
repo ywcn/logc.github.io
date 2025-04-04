@@ -588,6 +588,7 @@
         if (!loggedInUser || !userMap[loggedInUser]) {
             window.location.href = "login.html";
         } else {
+            window.location.href = "login.html";
             document.getElementById('userAvatar').src = userMap[loggedInUser].avatar;
             document.getElementById('welcomeText').textContent = `欢迎您！${loggedInUser}`;
         }
