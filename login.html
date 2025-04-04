@@ -54,7 +54,7 @@
         if (!localStorage.getItem("allUsers")) {
             const defaultUsers = {
                 "admin": { password: "123456", avatar: "https://i.pravatar.cc/40?u=admin", name: "管理员" },
-                "xiaoli": { password: "abc123", avatar: "https://i.pravatar.cc/40?u=xiaoli", name: "小李" }
+                "user1": { password: "abc123", avatar: "https://i.pravatar.cc/40?u=xiaoli", name: "用户1" }
             };
             localStorage.setItem("allUsers", JSON.stringify(defaultUsers));
         }
@@ -73,8 +73,8 @@
                     avatar: allUsers[username].avatar
                 };
                 localStorage.setItem("loggedInUser", JSON.stringify(userData));
-                window.location.href = "https://ywcn.github.io/logc.github.io/";
-            } else {
+                window.location.href = "index.html/";
+            } else {index.html
                 errorDiv.textContent = "用户名或密码错误";
             }
         }
