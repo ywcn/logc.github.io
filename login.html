@@ -75,6 +75,7 @@ button {
                 "user1": { password: "abc123", avatar: "https://i.pravatar.cc/40?u=xiaoli", name: "用户1" }
             };
             localStorage.setItem("allUsers", JSON.stringify(defaultUsers));
+            console.log("当前用户数据：", allUsers);
         }
 
         function login() {
@@ -95,7 +96,7 @@ button {
                 errorDiv.textContent = "用户名或密码错误";
             }
         }
-        console.log("当前用户数据：", allUsers);
+        
     </script>
 </body>
 </html>
