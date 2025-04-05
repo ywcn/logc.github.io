@@ -1,63 +1,63 @@
 <!DOCTYPE html>
 <html lang="zh">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>登录</title>
     <style>
         body {
-            font-family: sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: skyblue;
-        }
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: skyblue;
+}
 
-        .login-box {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border: 2px solid #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 5px #fff, 5px 5px 10px #fff, 10px 10px 15px #fff, inset 2px 2px #fff;
-        }
+.login-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #fff, 5px 5px 10px #fff, 10px 10px 15px #fff, inset 2px 2px #fff;
+}
 
-        input {
-            display: block;
-            margin: 10px 0;
-            padding: 8px;
-            width: 100%;
-        }
+input {
+    display: block;
+    margin: 10px 0;
+    padding: 8px;
+    width: 100%;
+}
 
-        button {
-            padding: 8px 16px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
+button {
+    padding: 8px 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
 
-        .error {
-            color: red;
-        }
-    </style>
+.error {
+    color: red;
+}
+        </style>
 </head>
-
 <body>
-    <form onsubmit="login(); return false;" class="login-box">
-    <input type="text" id="username" placeholder="用户名" autocomplete="username" />
-    <input type="password" id="password" placeholder="密码" autocomplete="current-password" />
-    <button type="submit">登录</button>
-</form>
-
+    <div class="login-box">
+        <h2>请登录</h2>
+        <form onsubmit="login(); return false;">
+            <input type="text" id="username" placeholder="用户名" autocomplete="username" />
+            <input type="password" id="password" placeholder="密码" autocomplete="current-password" />
+            <button type="submit">登录</button>
+        </form>
+        <div id="errorMsg" class="error"></div>
+    </div>
 
     <script>
-        // 初始账号数据（每次加载时检查并初始化）
         if (!localStorage.getItem("allUsers")) {
             const defaultUsers = {
                 "admin": { password: "123456", avatar: "https://i.pravatar.cc/40?u=admin", name: "管理员" },
@@ -70,7 +70,6 @@
             const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value.trim();
             const errorDiv = document.getElementById('errorMsg');
-
             const allUsers = JSON.parse(localStorage.getItem("allUsers") || "{}");
 
             if (allUsers[username] && allUsers[username].password === password) {
@@ -87,5 +86,4 @@
         }
     </script>
 </body>
-
 </html>
