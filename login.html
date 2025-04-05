@@ -68,7 +68,7 @@ button {
     </div>
 
     <script>
-        console.log("当前用户数据：", allUsers);
+        
         if (!localStorage.getItem("allUsers")) {
             const defaultUsers = {
                 "admin": { password: "123456", avatar: "https://i.pravatar.cc/40?u=admin", name: "管理员" },
@@ -95,6 +95,7 @@ button {
                 errorDiv.textContent = "用户名或密码错误";
             }
         }
+        console.log("当前用户数据：", allUsers);
     </script>
 </body>
 </html>
