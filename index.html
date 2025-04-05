@@ -199,7 +199,8 @@
 <body>
     <div class="user-bar">
     <div class="user-info">
-      <img id="userAvatar" src="" alt="头像">
+      <img id="userAvatar" src="" alt="头像" style="border-radius: 50%; cursor: pointer;"
+                onclick="changeAvatar()" />
       <span id="userName"></span>
     </div>
     <div class="btn">
@@ -617,23 +618,43 @@
                 alert('未能识别到有效的客户信息，请检查粘贴内容！');
             }
         });
+        //检查是否登录
         const user = JSON.parse(localStorage.getItem("loggedInUser"));
 
-    if (!user) {
-      window.location.href = "login.html";
-    } else {
-      document.getElementById("userAvatar").src = user.avatar;
-      document.getElementById("userName").textContent = `欢迎您！${user.name}`;
-    }
+        if (!user) {
+         window.location.href = "login.html";
+        } else {
+         document.getElementById("userAvatar").src = user.avatar;
+         document.getElementById("userName").textContent = `欢迎您！${user.name}`;
+       }
+        //换头像
+        function changeAvatar() {
+            const user = JSON.parse(localStorage.getItem("loggedInUser"));
+            const allUsers = JSON.parse(localStorage.getItem("allUsers"));
 
-    function logout() {
-      localStorage.removeItem("loggedInUser");
-      window.location.href = "login.html";
-    }
+            // 生成新的随机头像链接
+            const randomSeed = Date.now() + Math.random();
+            const newUrl = `https://i.pravatar.cc/150?u=${randomSeed}`;
+
+            // 更新头像地址
+            user.avatar = newUrl;
+            allUsers[user.username].avatar = newUrl;
+
+            // 保存并更新页面
+            localStorage.setItem("loggedInUser", JSON.stringify(user));
+            localStorage.setItem("allUsers", JSON.stringify(allUsers));
+            document.getElementById("userAvatar").src = newUrl;
+        }
+        
+       //退出
+       function logout() {
+         localStorage.removeItem("loggedInUser");
+         window.location.href = "login.html";
+       }
         
 
        
-
+       //修改密码
         function openChangePasswordModal() {
             document.getElementById("passwordModal").style.display = "flex";
         }
