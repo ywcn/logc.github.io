@@ -622,7 +622,7 @@
         const user = JSON.parse(localStorage.getItem("loggedInUser"));
 
         if (!user) {
-         window.location.href = "login.html";
+         window.location.href = "pandalogin.html";
         } else {
          document.getElementById("userAvatar").src = user.avatar;
          document.getElementById("userName").textContent = `欢迎您！${user.name}`;
@@ -649,7 +649,7 @@
        //退出
        function logout() {
          localStorage.removeItem("loggedInUser");
-         window.location.href = "login.html";
+         window.location.href = "pandalogin.html";
        }
         
 
