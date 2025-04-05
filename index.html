@@ -180,7 +180,7 @@
             padding: 10px;
             margin: 8px 0;
         }
-        .logout-btn {
+        .user-bar button {
       background-color: #e74c3c;
       color: white;
       border: none;
@@ -189,7 +189,7 @@
       cursor: pointer;
     }
 
-    .logout-btn:hover {
+    .user-bar button:hover {
       background-color: #c0392b;
     }
     </style>
@@ -199,8 +199,9 @@
     <div class="user-bar">
     <div class="user-info">
       <img id="userAvatar" src="" alt="头像">
-      <span id="userName">欢迎，</span>
+      <span id="userName"></span>
     </div>
+    <button onclick="openChangePasswordModal()">修改密码</button>
     <button class="logout-btn" onclick="logout()">退出登录</button>
   </div>
 
