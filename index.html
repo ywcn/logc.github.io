@@ -9,6 +9,28 @@
             font-family: Arial, sans-serif;
             margin: 20px;
         }
+        .user-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+      padding: 10px 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .user-info img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
 
         h1 {
             margin: 5px auto;
@@ -158,17 +180,29 @@
             padding: 10px;
             margin: 8px 0;
         }
+        .logout-btn {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .logout-btn:hover {
+      background-color: #c0392b;
+    }
     </style>
 </head>
 
 <body>
-    <div id="userBar" style="display:flex; align-items:center; justify-content: flex-end; padding: 10px;">
-        <img id="userAvatar" src="" alt="头像" style="border-radius:50%; width:40px; height:40px; margin-right:10px;">
-        <span id="welcomeText"></span>
-      <div class="header">
-        <button onclick="openChangePasswordModal()">修改密码</button>
-        <button onclick="logout()">退出登录</button>
+    <div class="user-bar">
+    <div class="user-info">
+      <img id="userAvatar" src="" alt="头像">
+      <span id="userName">欢迎，</span>
     </div>
+    <button class="logout-btn" onclick="logout()">退出登录</button>
+  </div>
 
     </div>
     
@@ -579,24 +613,22 @@
                 alert('未能识别到有效的客户信息，请检查粘贴内容！');
             }
         });
-        const userMap = {
-            "admin": { password: `a000000`, avatar: "https://i.pravatar.cc/40?u=admin" },
-            "user1": { password: `a000001`, avatar: "https://i.pravatar.cc/40?u=user1" }
-        };
+        const user = JSON.parse(localStorage.getItem("loggedInUser"));
 
-        const loggedInUser = localStorage.getItem('loggedInUser');
-        if (!loggedInUser || !userMap[loggedInUser]) {
-            window.location.href = "login.html";
-        } else {
-            
-            document.getElementById('userAvatar').src = userMap[loggedInUser].avatar;
-            document.getElementById('welcomeText').textContent = `欢迎您！${loggedInUser}`;
-        }
+    if (!user) {
+      window.location.href = "login.html";
+    } else {
+      document.getElementById("userAvatar").src = user.avatar;
+      document.getElementById("userName").textContent = `欢迎您！${user.name}`;
+    }
 
-        function logout() {
-            localStorage.removeItem('loggedInUser');
-            window.location.href = "login.html";
-        }
+    function logout() {
+      localStorage.removeItem("loggedInUser");
+      window.location.href = "login.html";
+    }
+        
+
+       
 
         function openChangePasswordModal() {
             document.getElementById("passwordModal").style.display = "flex";
