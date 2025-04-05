@@ -197,6 +197,10 @@
 </head>
 
 <body>
+    <!-- 音效元素 -->
+    <audio id="avatarSound" src="董昱昆 - 微博提示音.ogg"></audio>
+
+    <audio id="warningSound" src="阿茶暖暖 - 警报声-游戏提示音.ogg"></audio>
     <div class="user-bar">
     <div class="user-info">
       <img id="userAvatar" src="" alt="头像" style="border-radius: 50%; cursor: pointer;"
@@ -700,6 +704,31 @@
 
             window.location.href = 'password-changed.html';
         }
+        
+        const avatarSound = document.getElementById('avatarSound');
+
+          avatarSound.addEventListener('play', () => {
+             // 如果已有计时器，先清除
+            if (avatarSound._stopTimer) {
+            clearTimeout(avatarSound._stopTimer);
+        }
+
+         // 设置 1 秒后暂停并重置
+        avatarSound._stopTimer = setTimeout(() => {
+        avatarSound.pause();
+        avatarSound.currentTime = 0;
+        avatarSound._stopTimer = null;
+        }, 1000);
+        });
+
+      // 如果用户中途手动暂停，也清除计时器
+      avatarSound.addEventListener('pause', () => {
+         if (avatarSound._stopTimer) {
+         clearTimeout(avatarSound._stopTimer);
+        avatarSound._stopTimer = null;
+        }
+      });
+
 
     </script>
 
